@@ -1,0 +1,39 @@
+name = "undertale_preset"
+version = "0.1.0"
+authors = ["SoupRune Contributors"]
+description = "Undertale-style game preset for SoupRune — reusable views, FRE rules, sequences, and WASM behaviors."
+
+# This is a library mod, not a standalone game.
+# 这是一个库 mod，不是独立游戏。
+entry_point = false
+
+# Resource directories configuration
+# 资源目录配置
+[resources]
+textures = "assets/textures"
+audios = "assets/audios"
+fonts = "assets/fonts"
+
+[font_layout.battlehud]
+offset_y_factor = 0.125
+
+[dependencies]
+# No dependencies — this is the base library.
+
+[mod_library]
+# WASM component file containing RedSoul and FightBar behaviors
+# WASM 组件文件，包含红魂和攻击条行为
+wasm = ".build/runtime.wasm"
+
+[content_library]
+wasm = ".build/content.wasm"
+
+[game]
+global_rules = "app/global.fre.ron"
+player_behavior_path = "overworld/players/player_behavior.ron"
+input_config_path = "app/input.ron"
+flow_config_path = "app/flow.ron"
+dialogue_config_path = "narrative/dialogue.ron"
+item_directory = "actors/items"
+locales_directory = "assets/locales"
+overworld_rules = ["overworld/rules/interaction.fre.ron"]

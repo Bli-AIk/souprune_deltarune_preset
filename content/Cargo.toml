@@ -1,0 +1,18 @@
+[package]
+name = "content"
+version = "0.1.0"
+edition = "2024"
+
+[workspace]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1"
+cauld-ron = { path = "../../../crates/cauld-ron", default-features = false, features = ["guest"] }
+souprune_schema = { path = "../../../crates/souprune_schema" }
+souprune_cauld_ron = { path = "../../../crates/souprune_cauld_ron" }
+
+[build-dependencies]
+souprune_cauld_ron = { path = "../../../crates/souprune_cauld_ron" }

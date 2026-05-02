@@ -15,40 +15,13 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-05-02 14:22:50 +08:00
+// Generated at: 2026-05-03 00:22:54 +08:00
 
 (
     scope: Local,
     enums: {},
     facts: {},
     rules: [
-        (
-            id: "overworld_open_dark_menu",
-            event: ActionEvent(
-                action: "Menu",
-                kind: JustPressed,
-            ),
-            conditions: [
-                "$state:sequence_sub_state == \'Normal\'",
-                "$dialogue:active != true",
-            ],
-            actions: [
-                Log(
-                    message: "Opening Deltarune dark menu",
-                ),
-                Custom(
-                    action_type: "SetSubState",
-                    params: {
-                        "state": "DarkMenu",
-                    },
-                ),
-            ],
-            modifications: [],
-            outputs: [],
-            enabled: true,
-            priority: 0,
-            consume_event: true,
-        ),
         (
             id: "overworld_dialogue_started",
             event: Event("dialogue:started"),

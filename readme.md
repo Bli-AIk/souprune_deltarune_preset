@@ -1,8 +1,8 @@
-# souprune_undertale_preset
+# souprune_deltarune_preset
 
-[![license](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue)](LICENSE-APACHE) <img src="https://img.shields.io/github/repo-size/Bli-AIk/souprune_undertale_preset.svg"/> <img src="https://img.shields.io/github/last-commit/Bli-AIk/souprune_undertale_preset.svg"/>
+[![license](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue)](LICENSE-APACHE) <img src="https://img.shields.io/github/repo-size/Bli-AIk/souprune_deltarune_preset.svg"/> <img src="https://img.shields.io/github/last-commit/Bli-AIk/souprune_deltarune_preset.svg"/>
 
-**souprune_undertale_preset** is the maintained Undertale-style reusable preset project for SoupRune.
+**souprune_deltarune_preset** is the maintained Deltarune-style reusable preset project for SoupRune.
 
 | English | Simplified Chinese |
 |---------|--------------------|
@@ -10,10 +10,10 @@
 
 ## Introduction
 
-This project provides reusable SoupRune content for Undertale-style games.
-It includes battle and overworld views, FRE rules, input and flow configuration, dialogue infrastructure, items, player behavior, and WASM runtime/content guests.
+This project provides reusable SoupRune content for Deltarune-style games.
+The first milestone focuses on the overworld dark menu: party status, ITEM / STORAGE / KEYITEM navigation, DR-style 640x480 coordinates, and minimal runtime glue for dependent mods.
 
-This is a library mod, not a standalone game. Use `souprune_mad_dummy_example` when you want to study a complete runnable example project that depends on this preset.
+This is a library mod, not a standalone game. A project mod should depend on it and provide its own entry scene or smoke-test content.
 
 ## How to Use
 
@@ -28,32 +28,24 @@ git submodule update --init --recursive
 This repository is mounted by the main project at:
 
 ```text
-projects/undertale_preset
+projects/deltarune_preset
 ```
 
 Project mods can depend on it from their `mod.toml`:
 
 ```toml
 [dependencies]
-undertale_preset = "0.1.0"
+deltarune_preset = "0.1.0"
 ```
 
-## Mod Structure
+## Current Scope
 
-```text
-undertale_preset/
-├── mod.toml
-├── runtime/
-├── content/
-├── .build/
-├── app/
-├── battle/
-├── overworld/
-├── actors/
-├── narrative/
-├── view/
-└── assets/
-```
+- Deltarune-style overworld dark menu.
+- Party facts for up to three visible members.
+- ITEM / STORAGE / KEYITEM category and list navigation.
+- 640x480, top-left-origin, Y-down View coordinate space.
+
+Battle UI, battle commands, equipment, TP, Magic, shops, and complete item effects are intentionally outside this milestone.
 
 ## License and Asset Notice
 

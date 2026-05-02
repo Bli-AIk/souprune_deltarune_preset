@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-26 20:23:16 +08:00
+// Generated at: 2026-05-02 14:22:50 +08:00
 
 (
     scope: Local,
@@ -23,7 +23,7 @@
     facts: {},
     rules: [
         (
-            id: "overworld_open_backpack",
+            id: "overworld_open_dark_menu",
             event: ActionEvent(
                 action: "Menu",
                 kind: JustPressed,
@@ -34,12 +34,12 @@
             ],
             actions: [
                 Log(
-                    message: "Opening Backpack",
+                    message: "Opening Deltarune dark menu",
                 ),
                 Custom(
                     action_type: "SetSubState",
                     params: {
-                        "state": "Backpack",
+                        "state": "DarkMenu",
                     },
                 ),
             ],

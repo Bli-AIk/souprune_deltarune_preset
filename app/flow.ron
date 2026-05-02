@@ -15,24 +15,10 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-04-28 11:55:59 +08:00
+// Generated at: 2026-05-02 14:22:50 +08:00
 
 (
     states: {
-        "Backpack": (
-            view_interactive: true,
-            player_movable: false,
-            player_can_interact: None,
-            camera_follow_player: true,
-            view_layout: Some("overworld/view/undertale_backpack.view.ron"),
-            pre_spawn_events: [
-                "overworld:screen_facts_updated",
-            ],
-            initial_layer: None,
-            on_enter_sound: Some("assets/audios/sfx/confirm.wav"),
-            on_exit_sound: None,
-            chase_config: None,
-        ),
         "Chase": (
             view_interactive: false,
             player_movable: true,
@@ -54,6 +40,18 @@
             pre_spawn_events: [],
             initial_layer: None,
             on_enter_sound: None,
+            on_exit_sound: None,
+            chase_config: None,
+        ),
+        "DarkMenu": (
+            view_interactive: true,
+            player_movable: false,
+            player_can_interact: None,
+            camera_follow_player: true,
+            view_layout: Some("overworld/view/dark_menu.view.ron"),
+            pre_spawn_events: [],
+            initial_layer: None,
+            on_enter_sound: Some("assets/audios/sfx/confirm.wav"),
             on_exit_sound: None,
             chase_config: None,
         ),

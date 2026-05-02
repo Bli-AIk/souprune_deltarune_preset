@@ -48,7 +48,7 @@ pub fn asset() -> ChaseConfig {
             offset: Vec2Config { x: 0.0, y: -5.0 },
         },
         damage_ui: DamageUIConfig {
-            layout_path: "overworld/view/damage_flash.view.ron".into(),
+            layout_path: String::new(),
             display_duration: 2.5,
             damage_sound: Some("assets/audios/sfx/hurtsound.wav".into()),
         },

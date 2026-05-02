@@ -1,6 +1,6 @@
-//! Cauld-ron content guest for `undertale_preset`.
+//! Cauld-ron content guest for `deltarune_preset`.
 //!
-//! `undertale_preset` 的 Cauld-ron 内容 guest。
+//! `deltarune_preset` 的 Cauld-ron 内容 guest。
 
 use anyhow::Result;
 use souprune_cauld_ron::prelude::*;

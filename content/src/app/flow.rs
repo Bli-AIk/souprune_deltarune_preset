@@ -75,14 +75,14 @@ pub fn asset() -> StateConfig {
                 },
             ),
             (
-                "Backpack".into(),
+                "DarkMenu".into(),
                 StateDefinition {
                     view_interactive: true,
                     player_movable: false,
                     player_can_interact: None,
                     camera_follow_player: true,
-                    view_layout: Some("overworld/view/undertale_backpack.view.ron".into()),
-                    pre_spawn_events: vec!["overworld:screen_facts_updated".into()],
+                    view_layout: Some("overworld/view/dark_menu.view.ron".into()),
+                    pre_spawn_events: Vec::new(),
                     initial_layer: None,
                     on_enter_sound: Some("assets/audios/sfx/confirm.wav".into()),
                     on_exit_sound: None,

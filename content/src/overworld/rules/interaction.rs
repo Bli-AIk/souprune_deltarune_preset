@@ -18,7 +18,7 @@ pub fn asset() -> FreAsset {
         facts: vec![].into_iter().collect(),
         rules: vec![
             RuleDef {
-                id: "overworld_open_backpack".into(),
+                id: "overworld_open_dark_menu".into(),
                 event: RuleEventDef::ActionEvent {
                     action: "Menu".into(),
                     kind: ActionEventKind::JustPressed,
@@ -29,11 +29,11 @@ pub fn asset() -> FreAsset {
                 ],
                 actions: vec![
                     RuleActionDef::Log {
-                        message: "Opening Backpack".into(),
+                        message: "Opening Deltarune dark menu".into(),
                     },
                     RuleActionDef::Custom {
                         action_type: "SetSubState".into(),
-                        params: vec![("state".into(), "Backpack".into())]
+                        params: vec![("state".into(), "DarkMenu".into())]
                             .into_iter()
                             .collect(),
                     },

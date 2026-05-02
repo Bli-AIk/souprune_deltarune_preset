@@ -21,6 +21,3 @@ assets/debug/**/*.png
 target/
 
 .build/
-!.build/
-!.build/*.wasm
-!.build/cauld-ron-output-manifest.toml

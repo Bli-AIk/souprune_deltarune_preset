@@ -5,10 +5,32 @@
 pub mod dark_menu;
 mod dark_menu_open;
 
+use souprune_schema::fre::RuleEventDef;
+
+/// Build the semantic FRE input event for a configured action.
+///
+/// 为配置动作构造语义 FRE 输入事件。
+pub fn input_event(action: &str) -> RuleEventDef {
+    RuleEventDef::Event(input_event_id(action).into())
+}
+
+fn input_event_id(action: &str) -> &'static str {
+    match action {
+        "Up" => "input:navigate_up",
+        "Down" => "input:navigate_down",
+        "Left" => "input:navigate_left",
+        "Right" => "input:navigate_right",
+        "Confirm" => "input:confirm",
+        "Cancel" => "input:cancel",
+        "Menu" => "input:menu",
+        other => panic!("unsupported semantic input action: {other}"),
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::dark_menu;
-    use souprune_schema::fre::{ActionEventKind, FactValueDef, RuleActionDef, RuleEventDef};
+    use souprune_schema::fre::{FactValueDef, RuleActionDef, RuleEventDef};
     use souprune_schema::sequence::{Chapter, ElementSelector, TweenTarget};
     use souprune_schema::view::{
         CoordinateExtentDef, RotationDirectionDef, ViewNodeDef, YAxisDirectionDef,
@@ -84,10 +106,7 @@ mod tests {
             .filter(|rule| {
                 matches!(
                     rule.event,
-                    RuleEventDef::ActionEvent {
-                        ref action,
-                        kind: ActionEventKind::JustPressed,
-                    } if action == "Menu"
+                    RuleEventDef::Event(ref event) if event == "input:menu"
                 )
             })
             .collect::<Vec<_>>();
@@ -216,7 +235,10 @@ mod tests {
         assert_eq!(top_group_translation.1.as_static(), Some(&-80.0));
 
         let party_group = find_node(canvas, "DarkMenuPartyGroup");
-        let party_group_transform = party_group.transform.as_ref().expect("party group transform");
+        let party_group_transform = party_group
+            .transform
+            .as_ref()
+            .expect("party group transform");
         let party_group_translation = party_group_transform
             .translation
             .as_ref()
@@ -330,8 +352,14 @@ mod tests {
         let actual_scale = transform.scale.as_ref().expect("sprite scale");
         assert_eq!(actual_scale.0.as_static(), Some(&scale));
         assert_eq!(actual_scale.1.as_static(), Some(&scale));
-        assert_eq!(sprite.pivot.as_ref().and_then(|pivot| pivot.0.as_static()), Some(&0.0));
-        assert_eq!(sprite.pivot.as_ref().and_then(|pivot| pivot.1.as_static()), Some(&0.0));
+        assert_eq!(
+            sprite.pivot.as_ref().and_then(|pivot| pivot.0.as_static()),
+            Some(&0.0)
+        );
+        assert_eq!(
+            sprite.pivot.as_ref().and_then(|pivot| pivot.1.as_static()),
+            Some(&0.0)
+        );
     }
 
     fn assert_party_box(
@@ -395,7 +423,9 @@ mod tests {
     }
 
     fn first_position_y(chapters: &[Chapter], local_name: &str) -> Option<f32> {
-        chapters.iter().find_map(|chapter| position_y(chapter, local_name))
+        chapters
+            .iter()
+            .find_map(|chapter| position_y(chapter, local_name))
     }
 
     fn last_position_y(chapters: &[Chapter], local_name: &str) -> Option<f32> {
@@ -406,7 +436,9 @@ mod tests {
     }
 
     fn first_scale_y(chapters: &[Chapter], local_name: &str) -> Option<f32> {
-        chapters.iter().find_map(|chapter| scale_y(chapter, local_name))
+        chapters
+            .iter()
+            .find_map(|chapter| scale_y(chapter, local_name))
     }
 
     fn last_scale_y(chapters: &[Chapter], local_name: &str) -> Option<f32> {

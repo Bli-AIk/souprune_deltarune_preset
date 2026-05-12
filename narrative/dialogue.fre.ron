@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-05-02 14:26:17 +08:00
+// Generated at: 2026-05-12 13:43:27 +00:00
 
 (
     scope: Local,
@@ -26,10 +26,7 @@
     rules: [
         (
             id: "dialogue_advance_on_confirm",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$dialogue:has_focus == true",
                 "$dialogue:typewriter_playing == false",
@@ -45,10 +42,7 @@
         ),
         (
             id: "dialogue_skip_on_confirm",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$dialogue:has_focus == true",
                 "$dialogue:typewriter_playing == true",
@@ -64,10 +58,7 @@
         ),
         (
             id: "dialogue_skip_on_cancel",
-            event: ActionEvent(
-                action: "Cancel",
-                kind: JustPressed,
-            ),
+            event: Event("input:cancel"),
             conditions: [
                 "$dialogue:has_focus == true",
                 "$dialogue:typewriter_playing == true",

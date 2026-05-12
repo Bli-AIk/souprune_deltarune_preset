@@ -25,10 +25,7 @@ pub fn asset() -> FreAsset {
         rules: vec![
             RuleDef {
                 id: "dialogue_advance_on_confirm".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$dialogue:has_focus == true".into(),
                     "$dialogue:typewriter_playing == false".into(),
@@ -42,10 +39,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "dialogue_skip_on_confirm".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Confirm".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Confirm"),
                 conditions: vec![
                     "$dialogue:has_focus == true".into(),
                     "$dialogue:typewriter_playing == true".into(),
@@ -59,10 +53,7 @@ pub fn asset() -> FreAsset {
             },
             RuleDef {
                 id: "dialogue_skip_on_cancel".into(),
-                event: RuleEventDef::ActionEvent {
-                    action: "Cancel".into(),
-                    kind: ActionEventKind::JustPressed,
-                },
+                event: crate::support::input_event("Cancel"),
                 conditions: vec![
                     "$dialogue:has_focus == true".into(),
                     "$dialogue:typewriter_playing == true".into(),

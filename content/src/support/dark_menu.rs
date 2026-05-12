@@ -182,7 +182,10 @@ fn menu_enums() -> HashMap<String, Vec<String>> {
 }
 
 fn menu_slots(items: &[&str]) -> Vec<String> {
-    let mut slots = items.iter().map(|item| (*item).to_string()).collect::<Vec<_>>();
+    let mut slots = items
+        .iter()
+        .map(|item| (*item).to_string())
+        .collect::<Vec<_>>();
     slots.resize(MENU_SLOT_COUNT, String::new());
     slots
 }
@@ -191,7 +194,7 @@ fn menu_rules() -> Vec<RuleDef> {
     vec![
         rule(
             "dr_open_dark_menu",
-            action_event("Menu"),
+            input_event("Menu"),
             vec![
                 "$state:sequence_sub_state == 'Normal'".into(),
                 "$dialogue:active != true".into(),
@@ -210,7 +213,7 @@ fn menu_rules() -> Vec<RuleDef> {
         ),
         rule(
             "dr_top_confirm_item",
-            action_event("Confirm"),
+            input_event("Confirm"),
             vec!["$dr_menu_layer == 'top_menu'".into(), "$dr_menu_top_index == 0".into()],
             vec![
                 set_layer("item_category"),
@@ -223,19 +226,19 @@ fn menu_rules() -> Vec<RuleDef> {
         ),
         rule(
             "dr_top_cancel",
-            action_event("Cancel"),
+            input_event("Cancel"),
             vec!["$dr_menu_layer == 'top_menu'".into()],
             vec![set_sub_state(NORMAL_STATE), RuleActionDef::PlaySound("choice".into())],
         ),
         rule(
             "dr_category_left_wrap",
-            action_event("Left"),
+            input_event("Left"),
             vec!["$dr_menu_layer == 'item_category'".into(), "$dr_menu_category_index <= 0".into()],
             vec![set_int("dr_menu_category_index", 2), RuleActionDef::PlaySound("choice".into())],
         ),
         rule(
             "dr_category_left",
-            action_event("Left"),
+            input_event("Left"),
             vec!["$dr_menu_layer == 'item_category'".into(), "$dr_menu_category_index > 0".into()],
             vec![
                 set_expr("dr_menu_category_index", "$dr_menu_category_index - 1"),
@@ -244,13 +247,13 @@ fn menu_rules() -> Vec<RuleDef> {
         ),
         rule(
             "dr_category_right_wrap",
-            action_event("Right"),
+            input_event("Right"),
             vec!["$dr_menu_layer == 'item_category'".into(), "$dr_menu_category_index >= 2".into()],
             vec![set_int("dr_menu_category_index", 0), RuleActionDef::PlaySound("choice".into())],
         ),
         rule(
             "dr_category_right",
-            action_event("Right"),
+            input_event("Right"),
             vec!["$dr_menu_layer == 'item_category'".into(), "$dr_menu_category_index < 2".into()],
             vec![
                 set_expr("dr_menu_category_index", "$dr_menu_category_index + 1"),
@@ -259,7 +262,7 @@ fn menu_rules() -> Vec<RuleDef> {
         ),
         rule(
             "dr_category_confirm_item",
-            action_event("Confirm"),
+            input_event("Confirm"),
             vec![
                 "$dr_menu_layer == 'item_category'".into(),
                 "$dr_menu_category_index == 0".into(),
@@ -275,7 +278,7 @@ fn menu_rules() -> Vec<RuleDef> {
         ),
         rule(
             "dr_category_confirm_storage",
-            action_event("Confirm"),
+            input_event("Confirm"),
             vec![
                 "$dr_menu_layer == 'item_category'".into(),
                 "$dr_menu_category_index == 1".into(),
@@ -291,7 +294,7 @@ fn menu_rules() -> Vec<RuleDef> {
         ),
         rule(
             "dr_category_confirm_key_item",
-            action_event("Confirm"),
+            input_event("Confirm"),
             vec![
                 "$dr_menu_layer == 'item_category'".into(),
                 "$dr_menu_category_index == 2".into(),
@@ -307,7 +310,7 @@ fn menu_rules() -> Vec<RuleDef> {
         ),
         rule(
             "dr_category_cancel",
-            action_event("Cancel"),
+            input_event("Cancel"),
             vec!["$dr_menu_layer == 'item_category'".into()],
             vec![
                 set_layer("top_menu"),
@@ -329,7 +332,7 @@ fn menu_rules() -> Vec<RuleDef> {
         list_nav_rule("dr_key_item_down", "Down", "key_item_list", "dr_menu_key_item_cursor", "$dr_menu_key_item_cursor + 2 < $dr_key_items_count && $dr_menu_key_item_cursor < 11", "$dr_menu_key_item_cursor + 2"),
         rule(
             "dr_list_cancel",
-            action_event("Cancel"),
+            input_event("Cancel"),
             vec![
                 "$dr_menu_layer == 'item_list' || $dr_menu_layer == 'storage_list' || $dr_menu_layer == 'key_item_list'".into(),
             ],
@@ -343,7 +346,7 @@ fn menu_rules() -> Vec<RuleDef> {
         ),
         rule(
             "dr_key_item_unusable_feedback",
-            action_event("Confirm"),
+            input_event("Confirm"),
             vec!["$dr_menu_layer == 'key_item_list'".into(), "$dr_key_items_usable != true".into()],
             vec![
                 set_string("dr.menu.feedback", "You can't use this here."),
@@ -421,11 +424,8 @@ pub fn view_asset() -> ViewLayoutAsset {
     }
 }
 
-fn action_event(action: &str) -> RuleEventDef {
-    RuleEventDef::ActionEvent {
-        action: action.into(),
-        kind: ActionEventKind::JustPressed,
-    }
+fn input_event(action: &str) -> RuleEventDef {
+    crate::support::input_event(action)
 }
 
 fn rule(
@@ -457,7 +457,7 @@ fn list_nav_rule(
 ) -> RuleDef {
     rule(
         id,
-        action_event(action),
+        input_event(action),
         vec![format!("$dr_menu_layer == '{layer}'"), condition.into()],
         vec![
             set_expr(cursor, next_value),
@@ -699,20 +699,8 @@ fn party_box(
             white(),
         ),
     ];
-    children.extend(number_sprites(
-        "PartyHpCurrent",
-        hp,
-        160.0,
-        11.0,
-        4.0,
-    ));
-    children.extend(number_sprites(
-        "PartyHpMax",
-        max_hp,
-        205.0,
-        11.0,
-        4.0,
-    ));
+    children.extend(number_sprites("PartyHpCurrent", hp, 160.0, 11.0, 4.0));
+    children.extend(number_sprites("PartyHpMax", max_hp, 205.0, 11.0, 4.0));
     children.extend([
         rect_node(
             "PartyHpBarBack",
@@ -824,10 +812,7 @@ fn rect_node(
 fn category_box() -> ViewNodeDef {
     ViewNodeDef {
         name: "ItemCategoryBox".into(),
-        visible_when: Some(
-            "$dr_menu_layer_id >= 1 && $dr_menu_layer_id <= 4"
-                .into(),
-        ),
+        visible_when: Some("$dr_menu_layer_id >= 1 && $dr_menu_layer_id <= 4".into()),
         view_box: Some(ViewBoxLogicDef {
             width: 520.0,
             height: 290.0,
@@ -839,7 +824,12 @@ fn category_box() -> ViewNodeDef {
         }),
         texts: vec![
             category_label("CategoryUse", "USE", 180.0, "$dr_menu_category_index == 0"),
-            category_label("CategoryToss", "TOSS", 300.0, "$dr_menu_category_index == 1"),
+            category_label(
+                "CategoryToss",
+                "TOSS",
+                300.0,
+                "$dr_menu_category_index == 1",
+            ),
             category_label("CategoryKey", "KEY", 420.0, "$dr_menu_category_index == 2"),
         ],
         children: vec![ViewNodeDef {
@@ -887,7 +877,11 @@ fn item_entry_texts(name: &str, source: &str, count: &str) -> Vec<TextDef> {
                 content: Some(format!("{{${source}[{index}]}}")),
                 font: "DTM-Sans".into(),
                 world_scale: vector2(MAINBIG_TEXT_SCALE, MAINBIG_TEXT_SCALE),
-                transform: transform(146.0 + (210.0 * column as f32), 152.0 + (30.0 * row as f32), 2.0),
+                transform: transform(
+                    146.0 + (210.0 * column as f32),
+                    152.0 + (30.0 * row as f32),
+                    2.0,
+                ),
                 visible_when: Some(format!("${count} > {index}")),
                 ..Default::default()
             }

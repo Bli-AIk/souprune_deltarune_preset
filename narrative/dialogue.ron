@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-05-02 14:26:17 +08:00
+// Generated at: 2026-05-12 03:22:29 +00:00
 
 (
     auto_pause: (
@@ -51,6 +51,16 @@
                 "，": false,
                 "？": false,
             },
+        },
+    ),
+    text_animation: (
+        default_preset: "normal",
+        presets: {
+            "normal": (
+                display: Normal,
+                shake: None,
+                wave: None,
+            ),
         },
     ),
 )

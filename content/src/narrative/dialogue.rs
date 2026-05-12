@@ -58,5 +58,18 @@ pub fn asset() -> DialogueConfig {
             .into_iter()
             .collect(),
         },
+        text_animation: TextAnimationConfigDef {
+            default_preset: "normal".into(),
+            presets: vec![(
+                "normal".into(),
+                TextAnimationPresetDef {
+                    display: TextDisplayDef::Normal,
+                    shake: None,
+                    wave: None,
+                },
+            )]
+            .into_iter()
+            .collect(),
+        },
     }
 }

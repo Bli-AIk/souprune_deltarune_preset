@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue)](LICENSE-APACHE) <img src="https://img.shields.io/github/repo-size/Bli-AIk/souprune_deltarune_preset.svg"/> <img src="https://img.shields.io/github/last-commit/Bli-AIk/souprune_deltarune_preset.svg"/>
 
-**souprune_deltarune_preset** is the maintained Deltarune-style reusable preset project for SoupRune.
+**souprune_deltarune_preset** is the maintained Deltarune-style reusable library mod for SoupRune.
 
 | English | Simplified Chinese |
 |---------|--------------------|
@@ -13,7 +13,7 @@
 This project provides reusable SoupRune content for Deltarune-style games.
 The first milestone focuses on the overworld dark menu: party status, ITEM / STORAGE / KEYITEM navigation, DR-style 640x480 coordinates, and minimal runtime glue for dependent mods.
 
-This is a library mod, not a standalone game. A project mod should depend on it and provide its own entry scene or smoke-test content.
+This is a project-level library mod, not a compiled framework layer and not a standalone game. A project mod should depend on it and provide its own entry scene or smoke-test content.
 
 ## How to Use
 

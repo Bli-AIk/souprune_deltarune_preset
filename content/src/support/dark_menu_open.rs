@@ -20,10 +20,13 @@ const OPEN_KEYFRAMES: &[(f32, f32)] = &[
 ];
 
 pub fn asset() -> SequenceAsset {
-    let mut chapters = Vec::from([Chapter::AwaitFact {
-        condition: "$state:sequence_sub_state == 'DarkMenu'".into(),
-        local: false,
-    }, Chapter::Wait(FRAME_SECONDS)]);
+    let mut chapters = Vec::from([
+        Chapter::AwaitFact {
+            condition: "$state:sequence_sub_state == 'DarkMenu'".into(),
+            local: false,
+        },
+        Chapter::Wait(FRAME_SECONDS),
+    ]);
 
     for (index, (tp, bp)) in OPEN_KEYFRAMES.iter().copied().enumerate() {
         chapters.push(keyframe(tp, bp));

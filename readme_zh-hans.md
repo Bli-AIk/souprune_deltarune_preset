@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/badge/license-MIT%2FApache--2.0-blue)](LICENSE-APACHE) <img src="https://img.shields.io/github/repo-size/Bli-AIk/souprune_deltarune_preset.svg"/> <img src="https://img.shields.io/github/last-commit/Bli-AIk/souprune_deltarune_preset.svg"/>
 
-**souprune_deltarune_preset** 是 SoupRune 维护中的 Deltarune 风格可复用预设项目。
+**souprune_deltarune_preset** 是 SoupRune 维护中的 Deltarune 风格可复用库 mod。
 
 | 英语 | 简体中文 |
 |------|----------|
@@ -13,7 +13,7 @@
 本项目为 Deltarune 风格游戏提供可复用的 SoupRune 内容。
 第一阶段聚焦 overworld dark menu：队伍状态、ITEM / STORAGE / KEYITEM 导航、DR 风格 640x480 坐标，以及供依赖 mod 加载的最小 runtime glue。
 
-这是一个库 mod，不是独立游戏。项目 mod 应依赖它，并提供自己的入口场景或 smoke-test 内容。
+这是一个项目级库 mod，不是编译进本体的框架层，也不是独立游戏。项目 mod 应依赖它，并提供自己的入口场景或 smoke-test 内容。
 
 ## 使用方法
 

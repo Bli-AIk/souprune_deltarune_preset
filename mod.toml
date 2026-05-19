@@ -31,7 +31,19 @@ player_behavior_path = "overworld/players/player_behavior.ron"
 input_config_path = "app/input.ron"
 flow_config_path = "app/flow.ron"
 locales_directory = "assets/locales"
-overworld_rules = [
+
+[game.modes.overworld]
+primitives = [
+    "top_down_map",
+    "top_down_player",
+    "interaction_zones",
+    "view_runtime",
+    "fre_rules",
+    "sequencer",
+    "danmaku",
+    "chase",
+]
+rules = [
     "overworld/rules/interaction.fre.ron",
     "overworld/rules/dark_menu.fre.ron",
 ]

@@ -15,7 +15,7 @@
 //    structure globally, please edit the Cauld-ron source schema/configuration
 //    instead of modifying this file directly.
 // =============================================================================
-// Generated at: 2026-05-03 00:22:54 +08:00
+// Generated at: 2026-05-12 13:43:27 +00:00
 
 (
     scope: Local,
@@ -175,10 +175,7 @@
     rules: [
         (
             id: "dr_open_dark_menu",
-            event: ActionEvent(
-                action: "Menu",
-                kind: JustPressed,
-            ),
+            event: Event("input:menu"),
             conditions: [
                 "$state:sequence_sub_state == \'Normal\'",
                 "$dialogue:active != true",
@@ -212,10 +209,7 @@
         ),
         (
             id: "dr_top_confirm_item",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$dr_menu_layer == \'top_menu\'",
                 "$dr_menu_top_index == 0",
@@ -236,10 +230,7 @@
         ),
         (
             id: "dr_top_cancel",
-            event: ActionEvent(
-                action: "Cancel",
-                kind: JustPressed,
-            ),
+            event: Event("input:cancel"),
             conditions: [
                 "$dr_menu_layer == \'top_menu\'",
             ],
@@ -260,10 +251,7 @@
         ),
         (
             id: "dr_category_left_wrap",
-            event: ActionEvent(
-                action: "Left",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_left"),
             conditions: [
                 "$dr_menu_layer == \'item_category\'",
                 "$dr_menu_category_index <= 0",
@@ -280,10 +268,7 @@
         ),
         (
             id: "dr_category_left",
-            event: ActionEvent(
-                action: "Left",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_left"),
             conditions: [
                 "$dr_menu_layer == \'item_category\'",
                 "$dr_menu_category_index > 0",
@@ -300,10 +285,7 @@
         ),
         (
             id: "dr_category_right_wrap",
-            event: ActionEvent(
-                action: "Right",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_right"),
             conditions: [
                 "$dr_menu_layer == \'item_category\'",
                 "$dr_menu_category_index >= 2",
@@ -320,10 +302,7 @@
         ),
         (
             id: "dr_category_right",
-            event: ActionEvent(
-                action: "Right",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_right"),
             conditions: [
                 "$dr_menu_layer == \'item_category\'",
                 "$dr_menu_category_index < 2",
@@ -340,10 +319,7 @@
         ),
         (
             id: "dr_category_confirm_item",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$dr_menu_layer == \'item_category\'",
                 "$dr_menu_category_index == 0",
@@ -364,10 +340,7 @@
         ),
         (
             id: "dr_category_confirm_storage",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$dr_menu_layer == \'item_category\'",
                 "$dr_menu_category_index == 1",
@@ -388,10 +361,7 @@
         ),
         (
             id: "dr_category_confirm_key_item",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$dr_menu_layer == \'item_category\'",
                 "$dr_menu_category_index == 2",
@@ -412,10 +382,7 @@
         ),
         (
             id: "dr_category_cancel",
-            event: ActionEvent(
-                action: "Cancel",
-                kind: JustPressed,
-            ),
+            event: Event("input:cancel"),
             conditions: [
                 "$dr_menu_layer == \'item_category\'",
             ],
@@ -432,10 +399,7 @@
         ),
         (
             id: "dr_item_left",
-            event: ActionEvent(
-                action: "Left",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_left"),
             conditions: [
                 "$dr_menu_layer == \'item_list\'",
                 "$dr_menu_item_cursor % 2 == 1",
@@ -456,10 +420,7 @@
         ),
         (
             id: "dr_item_right",
-            event: ActionEvent(
-                action: "Right",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_right"),
             conditions: [
                 "$dr_menu_layer == \'item_list\'",
                 "$dr_menu_item_cursor % 2 == 0 && $dr_menu_item_cursor + 1 < $dr_inventory_count",
@@ -480,10 +441,7 @@
         ),
         (
             id: "dr_item_up",
-            event: ActionEvent(
-                action: "Up",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_up"),
             conditions: [
                 "$dr_menu_layer == \'item_list\'",
                 "$dr_menu_item_cursor >= 2",
@@ -504,10 +462,7 @@
         ),
         (
             id: "dr_item_down",
-            event: ActionEvent(
-                action: "Down",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_down"),
             conditions: [
                 "$dr_menu_layer == \'item_list\'",
                 "$dr_menu_item_cursor + 2 < $dr_inventory_count && $dr_menu_item_cursor < 11",
@@ -528,10 +483,7 @@
         ),
         (
             id: "dr_storage_left",
-            event: ActionEvent(
-                action: "Left",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_left"),
             conditions: [
                 "$dr_menu_layer == \'storage_list\'",
                 "$dr_menu_storage_cursor % 2 == 1",
@@ -552,10 +504,7 @@
         ),
         (
             id: "dr_storage_right",
-            event: ActionEvent(
-                action: "Right",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_right"),
             conditions: [
                 "$dr_menu_layer == \'storage_list\'",
                 "$dr_menu_storage_cursor % 2 == 0 && $dr_menu_storage_cursor + 1 < $dr_storage_count",
@@ -576,10 +525,7 @@
         ),
         (
             id: "dr_storage_up",
-            event: ActionEvent(
-                action: "Up",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_up"),
             conditions: [
                 "$dr_menu_layer == \'storage_list\'",
                 "$dr_menu_storage_cursor >= 2",
@@ -600,10 +546,7 @@
         ),
         (
             id: "dr_storage_down",
-            event: ActionEvent(
-                action: "Down",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_down"),
             conditions: [
                 "$dr_menu_layer == \'storage_list\'",
                 "$dr_menu_storage_cursor + 2 < $dr_storage_count && $dr_menu_storage_cursor < 11",
@@ -624,10 +567,7 @@
         ),
         (
             id: "dr_key_item_left",
-            event: ActionEvent(
-                action: "Left",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_left"),
             conditions: [
                 "$dr_menu_layer == \'key_item_list\'",
                 "$dr_menu_key_item_cursor % 2 == 1",
@@ -648,10 +588,7 @@
         ),
         (
             id: "dr_key_item_right",
-            event: ActionEvent(
-                action: "Right",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_right"),
             conditions: [
                 "$dr_menu_layer == \'key_item_list\'",
                 "$dr_menu_key_item_cursor % 2 == 0 && $dr_menu_key_item_cursor + 1 < $dr_key_items_count",
@@ -672,10 +609,7 @@
         ),
         (
             id: "dr_key_item_up",
-            event: ActionEvent(
-                action: "Up",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_up"),
             conditions: [
                 "$dr_menu_layer == \'key_item_list\'",
                 "$dr_menu_key_item_cursor >= 2",
@@ -696,10 +630,7 @@
         ),
         (
             id: "dr_key_item_down",
-            event: ActionEvent(
-                action: "Down",
-                kind: JustPressed,
-            ),
+            event: Event("input:navigate_down"),
             conditions: [
                 "$dr_menu_layer == \'key_item_list\'",
                 "$dr_menu_key_item_cursor + 2 < $dr_key_items_count && $dr_menu_key_item_cursor < 11",
@@ -720,10 +651,7 @@
         ),
         (
             id: "dr_list_cancel",
-            event: ActionEvent(
-                action: "Cancel",
-                kind: JustPressed,
-            ),
+            event: Event("input:cancel"),
             conditions: [
                 "$dr_menu_layer == \'item_list\' || $dr_menu_layer == \'storage_list\' || $dr_menu_layer == \'key_item_list\'",
             ],
@@ -742,10 +670,7 @@
         ),
         (
             id: "dr_key_item_unusable_feedback",
-            event: ActionEvent(
-                action: "Confirm",
-                kind: JustPressed,
-            ),
+            event: Event("input:confirm"),
             conditions: [
                 "$dr_menu_layer == \'key_item_list\'",
                 "$dr_key_items_usable != true",
